@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
+import '../styles/home.css'
+
 const Body = styled.div`
   display: flex;
   flex-direction: row;
@@ -10,8 +12,10 @@ const Body = styled.div`
 const VendasContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 35%;
-  margin-left: 10px;
+  width: 500px;
+  min-width: 35%;
+  
+  margin: 50px 16px;
 
     h1 {
         color: #F04E3E;
@@ -20,10 +24,23 @@ const VendasContainer = styled.div`
   input {
       margin-bottom: 6px;
       border-radius: 10px;
-      border: 1px solid black;
-      padding: 3px;
+      border: 2px solid #43434F;
+      padding: 10px;
       padding-left: 10px;
+
+
+  color: #43434F;
+height: 40px;
+outline: none;
   }  
+
+  input:hover{
+
+	background: #eef4f4;
+	transition: ease-in-out 0.3s;
+	border: 1px solid #43434F;
+}
+  }
 
   select {
       margin-bottom: 5px;
@@ -31,7 +48,10 @@ const VendasContainer = styled.div`
       border: 1px solid black;
       padding: 3px;
       padding-left: 10px;
-      color: gray;
+     
+      color: #43434F;
+height: 40px;
+outline: none;
   }
 
   button {
@@ -41,25 +61,43 @@ const VendasContainer = styled.div`
       padding: 5px;
       background-color: #F04E3E;
       color: white;
+      outline: none;
+      border: none;
+      height: 40px;
+      border-radius: 20px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
-`
+  button:hover{
+    background-color: #ffff;
+    color: #F04E3E;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+	transition: ease-in-out 0.2s;
+  }
+  `
+
+ 
+
 
 const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 35%;
-  margin-left: 10%;
+  width: 250px;
+  min-width: 35%;
+
+  margin: 50px 16px;
 
   h1 {
     color: #F04E3E;
   }
 
   img {
-    max-height: 150px;
+    max-height: 75%;
   }
 
   p {
     margin-top: -3px;
+    
   }
 `
 
@@ -112,7 +150,7 @@ class Vendas extends React.Component {
     createProduct = () => {
         const body = {
             name: this.state.name,
-            description: 'produto',
+            description: this.state.description,
             price: this.state.price,            
             paymentMethod: 'card',
             category: 'categoria 1',
@@ -124,7 +162,7 @@ class Vendas extends React.Component {
         axios.post ('https://us-central1-labenu-apis.cloudfunctions.net/fourUsedOne/products', body)
         .then(() => {
             alert('Produto anunciado com sucesso')
-            
+            this.setState({name: '',description: '', price: 0, playmentMethod: '', category: '', photos: [], installments: 1})
         })
         .catch( error => {
             alert('Erro ao anunciar');
@@ -136,7 +174,7 @@ class Vendas extends React.Component {
     render() {
         return (
             <Body>
-                <header>Navbar</header>
+              
                 <VendasContainer>
                     <h1>Venda</h1>
                     <input type = 'text' 
@@ -187,14 +225,23 @@ class Vendas extends React.Component {
                 </VendasContainer>
 
                 <PreviewContainer>  
-                  <h1>Preview</h1>           
-                  <p> Nome do produto: {this.state.name} </p>
-                  <p> Descrição: {this.state.description} </p>
-                  <p> Preço: {this.state.price} </p>
-                  <p> Categoria: {this.state.category} </p>
-                  <p> Parcelas: {this.state.installments} </p>
-                  <p> Método de pagamento: {this.state.paymentMethod} </p>
-                  <img src= {this.state.photos} />
+                  <h1>Preview</h1>   
+                  <div className="product">
+            <img src={this.state.photos} alt="Product" />
+            <div className="product-info">
+              <div className="product-text">
+                <h3>{this.state.name}</h3>
+                <p>{this.state.price}</p>
+              </div>
+              <div className="product-button">
+                <button className="buyBtn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </div>      
+              
+                
                 </PreviewContainer>
             </Body>
         );

@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles/register.css';
+import '../styles/register.css';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/InputBase';
-import logo from './img/logo.svg';
+import logo from '../assets/logo.svg';
 
 
 const ButtonRegister = styled(Button)({
@@ -27,7 +27,7 @@ const FormInput = styled(Input)({
     paddingBottom: '10px',
 })
 
-export class UserRegister extends React.Component {
+export default class UserRegister extends React.Component {
     state = {
         nameValue: "",
         emailValue: ""
@@ -48,7 +48,7 @@ export class UserRegister extends React.Component {
 
     render() {
         return <div className='ContainerRegister'>
-            <img className='Logo' src={logo} />
+            <img className='Logo' onClick={this.props.onClickLogo} src={logo} />
             <h2 className='Title'>Cadastre-se</h2>
             <FormInput
                 placeholder="Nome"
