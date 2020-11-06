@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+ /* Estilização page - Cadastro*/
+
+.ContainerRegister {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  grid-gap: 16px;
+}
+.Title{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #20B2AA;
+  display: flex;
+  justify-content: center;
+}
+.Logo{
+  margin-top: 25px;
+  
+}
+.Button:hover{
+  color: black;
+}

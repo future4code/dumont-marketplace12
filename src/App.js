@@ -1,10 +1,9 @@
-import React from 'react'
-import { AppContainer } from './components/AppContainer'
+import React from 'react';
+import {CadastroUsuario} from './components/CadastroUsuario'
 
-function App() {
-	return (
-        <AppContainer />
-	)
+export class App extends React.Component {
+    render() {
+        return <CadastroUsuario/>
+    }
 }
-
 export default App
