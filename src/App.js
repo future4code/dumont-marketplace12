@@ -4,6 +4,7 @@ import axios from "axios";
 import "./styles/styles.css";
 import "./styles/home.css";
 import banner from "./assets/banner.png";
+import ShoppingCart from "./components/ShoppingCart";
 
 import Sell from "./Components/Sell";
 import UserRegister from "./Components/UserRegister";
@@ -38,6 +39,13 @@ class App extends React.Component {
     this.state.products.map((prod) => prod.id === id && prodCart.push(prod));
     this.setState({ pageProd: true, cartProds: prodCart });
   };
+
+onClickDel = (id) => {
+  const prodCart = []
+  this.state.cartProds.filter((prod) => prod.id === id && prodCart.splice(indexOf(prod), 1));
+  this.setState({ pageProduct: true, cartProds: [...this.state.cartProds, prodCart] });
+  // console.log(this.state.cartProds)
+}
 
   onClickHome = () => {
     this.setState({
@@ -104,7 +112,7 @@ class App extends React.Component {
       } else if (this.state.pageProd) {
         return <PageProduct />;
       } else if (this.state.pageCart) {
-        return "cart";
+        return <ShoppingCart onClickDel={this.onClickDel} />;
       } else if (this.state.pageRegister) {
         return <UserRegister onClickLogo={this.onClickHome} />;
       } else if (this.state.pageSell) {
