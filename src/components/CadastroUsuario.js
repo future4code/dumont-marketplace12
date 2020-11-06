@@ -48,7 +48,7 @@ export class CadastroUsuario extends React.Component {
 
     render() {
         return <div className='ContainerRegister'>
-            <img className='Logo' src={logo}/>
+            <img className='Logo' src={logo} />
             <h2 className='Title'>Cadastre-se</h2>
             <FormInput
                 placeholder="Nome"
@@ -58,7 +58,6 @@ export class CadastroUsuario extends React.Component {
                 onChange={this.OnChangeEmailValue} />
             <ButtonRegister className="Button"
                 onClick={this.OnClickRegister}>Cadastrar</ButtonRegister>
-            
         </div>
     }
 }
