@@ -1,6 +1,6 @@
-  /* Estilização page - Cadastro*/
-  
-  .ContainerRegister {
+/* Estilização page - Cadastro*/
+
+.ContainerRegister {
     display: grid;
     grid-template-columns: auto;
     justify-content: center;
@@ -16,8 +16,8 @@
   }
   .Logo{
     margin-top: 25px;
-    
+
   }
   .Button:hover{
     color: black;
-  }
+  } 
