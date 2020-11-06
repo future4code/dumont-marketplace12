@@ -10475,7 +10475,7 @@
     "loader-utils" "^1.1.0"
     "schema-utils" "^1.0.0"
 
-"styled-components@^5.1.0":
+"styled-components@^5.1.1":
   "integrity" "sha512-1ps8ZAYu2Husx+Vz8D+MvXwEwvMwFv+hqqUwhNlDN5ybg6A+3xyW1ECrAgywhvXapNfXiz79jJyU0x22z0FFTg=="
   "resolved" "https://registry.npmjs.org/styled-components/-/styled-components-5.1.1.tgz"
   "version" "5.1.1"
