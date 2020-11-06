@@ -21,9 +21,10 @@ class NavBar extends React.Component {
     });
   }
 
+
   render() {
     return (
-      <div className="navBar">
+      <div className="navBar" style={this.props.style}>
         <img onClick={this.props.onClickLogo} src={logo} alt="logo" />
         <input type="text" placeholder="Search" />
 
