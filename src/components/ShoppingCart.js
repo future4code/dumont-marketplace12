@@ -18,6 +18,7 @@ render(){
   const cartList = this.props.cartProds.map(
     (prod, key) => {
       <li key={key}>
+      <div>{prod}</div>
             <Button onClick={this.onClickDel(prod.id)}>Remove</Button>
             </li>
     }
