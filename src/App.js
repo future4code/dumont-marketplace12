@@ -15,17 +15,17 @@ const baseURL =
 class App extends React.Component {
   state = {
     products: [],
-    home: false,
+    home: true,
     pageSell: false,
     pageRegister: false,
     pageCart: false,
     pageProd: false,
     cartProds: [],
+    pageProductInfo: "",
   };
 
   componentDidMount() {
     this.renderProducts();
-    this.setState({ home: true });
   }
 
   renderProducts = () => {
@@ -85,13 +85,27 @@ onClickDel = (id) => {
     });
   };
 
+  onClickBuy = (id) => {
+    this.setState({
+      pageProd: true,
+    });
+
+    let prodCart = [...this.state.cartProds];
+    const product = this.state.products.filter((prod) => prod.id === id);
+    prodCart.push(product[0]);
+    this.setState({
+      cartProds: prodCart,
+      pageProductInfo: product[0],
+    });
+  };
+
   render() {
-    console.log(this.state.cartProds);
+
 
     const pageRender = () => {
       if (this.state.home) {
         return this.state.products.map((prod) => (
-          <div className="product">
+          <div className="product" key={prod.id}>
             <img src={prod.photos[0]} alt="Product" />
             <div className="product-info">
               <div className="product-text">
@@ -110,7 +124,7 @@ onClickDel = (id) => {
           </div>
         ));
       } else if (this.state.pageProd) {
-        return <PageProduct />;
+        return <PageProduct pageProductInfo={this.state.pageProductInfo} />;
       } else if (this.state.pageCart) {
         return <ShoppingCart onClickDel={this.onClickDel} />;
       } else if (this.state.pageRegister) {
@@ -137,6 +151,7 @@ onClickDel = (id) => {
         </div>
 
         <div className="products-container">{pageRender()}</div>
+   
       </div>
     );
   }
