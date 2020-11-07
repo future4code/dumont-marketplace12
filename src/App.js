@@ -4,7 +4,7 @@ import axios from "axios";
 import "./styles/styles.css";
 import "./styles/home.css";
 import banner from "./assets/banner.png";
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCart from "./Components/ShoppingCart";
 
 import Sell from "./Components/Sell";
 import UserRegister from "./Components/UserRegister";
@@ -22,6 +22,7 @@ class App extends React.Component {
     pageProd: false,
     cartProds: [],
     pageProductInfo: "",
+
   };
 
   componentDidMount() {
@@ -34,18 +35,13 @@ class App extends React.Component {
       .then((response) => this.setState({ products: response.data.products }));
   };
 
-  onClickBuy = (id) => {
-    let prodCart = [...this.state.cartProds];
-    this.state.products.map((prod) => prod.id === id && prodCart.push(prod));
-    this.setState({ pageProd: true, cartProds: prodCart });
-  };
+  // onClickBuy = (id) => {
+  //   let prodCart = [...this.state.cartProds];
+  //   this.state.products.map((prod) => prod.id === id && prodCart.push(prod));
+  //   this.setState({ pageProd: true, cartProds: prodCart });
+  // };
 
-onClickDel = (id) => {
-  const prodCart = []
-  this.state.cartProds.filter((prod) => prod.id === id && prodCart.splice(indexOf(prod), 1));
-  this.setState({ pageProduct: true, cartProds: [...this.state.cartProds, prodCart] });
-  // console.log(this.state.cartProds)
-}
+
 
   onClickHome = () => {
     this.setState({
@@ -86,10 +82,7 @@ onClickDel = (id) => {
   };
 
   onClickBuy = (id) => {
-    this.setState({
-      pageProd: true,
-    });
-
+   
     let prodCart = [...this.state.cartProds];
     const product = this.state.products.filter((prod) => prod.id === id);
     prodCart.push(product[0]);
@@ -97,6 +90,11 @@ onClickDel = (id) => {
       cartProds: prodCart,
       pageProductInfo: product[0],
     });
+
+    return  this.setState({
+      pageCart: true,
+    });
+
   };
 
   render() {
@@ -126,7 +124,7 @@ onClickDel = (id) => {
       } else if (this.state.pageProd) {
         return <PageProduct pageProductInfo={this.state.pageProductInfo} />;
       } else if (this.state.pageCart) {
-        return <ShoppingCart onClickDel={this.onClickDel} />;
+        return <ShoppingCart cartProds={this.state.cartProds} />;
       } else if (this.state.pageRegister) {
         return <UserRegister onClickLogo={this.onClickHome} />;
       } else if (this.state.pageSell) {
